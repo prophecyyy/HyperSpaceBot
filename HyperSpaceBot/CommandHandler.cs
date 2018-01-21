@@ -13,7 +13,7 @@ namespace HyperSpaceBot
     {
         private DiscordSocketClient _client;
         private CommandService _service;
-        private char _prefix = '~';
+        private char _prefix = '!';
 
         public CommandHandler(DiscordSocketClient client)
         {

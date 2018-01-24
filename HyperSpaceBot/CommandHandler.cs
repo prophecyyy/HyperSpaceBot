@@ -13,7 +13,8 @@ namespace HyperSpaceBot
     {
         private DiscordSocketClient _client;
         private CommandService _service;
-        private char _prefix = '!';
+        private char _prefix = '.';
+
 
         public CommandHandler(DiscordSocketClient client)
         {
@@ -30,6 +31,21 @@ namespace HyperSpaceBot
             var context = new SocketCommandContext(_client, msg);
             int argPos = 0;
 
+            //Spy stuff
+            if (context.Channel.Name == "general") 
+            {
+                string mssg = msg.Content;
+                //var server = 
+                var channel = message.Channel;  
+                var user = message.Author;
+                var time = message.CreatedAt;
+                var channelTo = context.Guild.GetTextChannel(404405844248231938);
+                string result = "**|-----------------------------------------------------|**" +
+                  "\n**User:** " + user + "\n**Time:** " + time + "\n**Channel:** " +
+                  channel + "\n**Message:** " + mssg;
+                await channelTo.SendMessageAsync(result);
+            }
+            //End of spy stuff
             if (msg.HasCharPrefix(_prefix, ref argPos) || msg.HasMentionPrefix(_client.CurrentUser, ref argPos))
             {
                 var result = await _service.ExecuteAsync(context, argPos);

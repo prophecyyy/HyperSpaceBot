@@ -25,11 +25,25 @@ namespace HyperSpaceBot.Modules
 
         }
 
-        [Command("help")]
+        [Command("Say")]
+        [Alias("say")]
+        [Summary("returns said sentence!")]
+        public async Task Say(string message)
+        {
+            var channel = await Context.User.GetOrCreateDMChannelAsync();
+            await channel.SendMessageAsync(message);
+        }
+
+        [Command("test")]
         public async Task help()
         {
+            var channel = Context.Guild.GetTextChannel(404405844248231938);
+            await channel.SendMessageAsync("asd");
+          
 
         }
+            
+        
 
         [Command("casino")]
         public async Task casino(IGuildUser user)
@@ -134,7 +148,7 @@ namespace HyperSpaceBot.Modules
         //        await Context.Channel.SendMessageAsync($"The role {role} was given to {user}");
         //    }
         //}
-           
+
     }
 }
 

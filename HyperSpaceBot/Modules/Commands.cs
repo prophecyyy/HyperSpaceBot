@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
 
 namespace HyperSpaceBot.Modules
 {
@@ -34,14 +35,26 @@ namespace HyperSpaceBot.Modules
             await channel.SendMessageAsync(message);
         }
 
-        [Command("test")]
-        public async Task help()
-        {
-            var channel = Context.Guild.GetTextChannel(404405844248231938);
-            await channel.SendMessageAsync("asd");
-          
-
-        }
+        //[Command("sendMylogs")]
+        //public async Task sendMylogs(string emailsent)
+        //{
+        //    //Sends email
+        //        MailMessage mail = new MailMessage();
+        //        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+        //        mail.From = new MailAddress("noreply-admins@gmail.com");
+        //        mail.To.Add(emailsent);
+        //        mail.Subject = "Logs do Server: " + Context.Guild.Name;
+        //        mail.Body = "logs";
+        //        System.Net.Mail.Attachment attachment;
+        //        attachment = new System.Net.Mail.Attachment(@"F:\.GitHub Repo\HyperSpaceBot\logs.txt");
+        //        mail.Attachments.Add(attachment);
+        //        SmtpServer.Port = 587;
+        //        SmtpServer.Credentials = new System.Net.NetworkCredential("youremail@gmail.com", "password");
+        //        SmtpServer.EnableSsl = true;
+        //        SmtpServer.Send(mail);
+        //        var channel = await Context.User.GetOrCreateDMChannelAsync();
+        //        await channel.SendMessageAsync("Logs Sent Successfully!");
+        //}
             
         
 

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Discord.WebSocket;
 using Discord.Commands;
 using System.Reflection;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
 
 namespace HyperSpaceBot
 {
@@ -32,18 +35,24 @@ namespace HyperSpaceBot
             int argPos = 0;
 
             //Spy stuff
-            if (context.Channel.Name == "general") 
+            if (context.Channel.Name == "general")
             {
                 string mssg = msg.Content;
                 var server = context.Guild.Name;
-                var channel = message.Channel;  
+                var channel = message.Channel;
                 var user = message.Author;
                 var time = message.CreatedAt;
                 var channelTo = context.Guild.GetTextChannel(404405844248231938);
                 string result = "**|-----------------------------------------------------|**" +
-                  "\n**User:** " + user + "\n**Time:** " + time + "\n**Server:** " 
+                  "\n**User:** " + user + "\n**Time:** " + time + "\n**Server:** "
                   + server + "\n**Channel:** " + channel + "\n**Message:** " + mssg;
                 await channelTo.SendMessageAsync(result);
+               
+                //Writes logs to a file
+                string write = "User: " + user + " | Time: " + time + " | Server: "
+                  + server + " | Channel: " + channel + " | Message: " + mssg;
+                string[] lines = {write};
+                File.AppendAllLines(@"F:\.GitHub Repo\HyperSpaceBot\logs.txt", lines);
             }
             //End of spy stuff
             if (msg.HasCharPrefix(_prefix, ref argPos) || msg.HasMentionPrefix(_client.CurrentUser, ref argPos))

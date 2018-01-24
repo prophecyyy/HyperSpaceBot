@@ -35,14 +35,14 @@ namespace HyperSpaceBot
             if (context.Channel.Name == "general") 
             {
                 string mssg = msg.Content;
-                //var server = 
+                var server = context.Guild.Name;
                 var channel = message.Channel;  
                 var user = message.Author;
                 var time = message.CreatedAt;
                 var channelTo = context.Guild.GetTextChannel(404405844248231938);
                 string result = "**|-----------------------------------------------------|**" +
-                  "\n**User:** " + user + "\n**Time:** " + time + "\n**Channel:** " +
-                  channel + "\n**Message:** " + mssg;
+                  "\n**User:** " + user + "\n**Time:** " + time + "\n**Server:** " 
+                  + server + "\n**Channel:** " + channel + "\n**Message:** " + mssg;
                 await channelTo.SendMessageAsync(result);
             }
             //End of spy stuff

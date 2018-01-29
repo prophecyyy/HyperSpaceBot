@@ -41,15 +41,18 @@ namespace HyperSpaceBot
                 var server = context.Guild.Name;
                 var channel = message.Channel;
                 var user = message.Author;
-                var time = message.CreatedAt;
-                var channelTo = context.Guild.GetTextChannel(404405844248231938);
+                string time = message.CreatedAt.ToString();
+                string timecut = time.Remove(time.Length - 7);
+                var guild = _client.GetGuild(407596076623986689);
+                var channelTo = guild.GetTextChannel(407601514148921345);
                 string result = "**|-----------------------------------------------------|**" +
-                  "\n**User:** " + user + "\n**Time:** " + time + "\n**Server:** "
+                  "\n**User:** " + user + "\n**Time:** " + timecut + "\n**Server:** "
                   + server + "\n**Channel:** " + channel + "\n**Message:** " + mssg;
-                await channelTo.SendMessageAsync(result);
-               
+
+                    await channelTo.SendMessageAsync(result);
+
                 //Writes logs to a file
-                string write = "User: " + user + " | Time: " + time + " | Server: "
+                string write = "User: " + user + " | Time: " + timecut + " | Server: "
                   + server + " | Channel: " + channel + " | Message: " + mssg;
                 string[] lines = {write};
                 File.AppendAllLines(@"F:\.GitHub Repo\HyperSpaceBot\logs.txt", lines);
